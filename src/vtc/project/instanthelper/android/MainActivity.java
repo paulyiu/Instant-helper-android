@@ -1,14 +1,18 @@
 package vtc.project.instanthelper.android;
 
+import com.google.android.gms.plus.Plus;
+
 import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -20,8 +24,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
-public class MainActivity extends Activity implements OnItemClickListener {
+public class MainActivity extends BaseActivity implements OnItemClickListener {
 
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
@@ -33,6 +38,7 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
+		mGoogleApiClient = buildGoogleApiClient();
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		drawerListener = new ActionBarDrawerToggle(this, mDrawerLayout,
 				R.drawable.ic_drawer, R.string.drawer_open,
@@ -113,6 +119,8 @@ public class MainActivity extends Activity implements OnItemClickListener {
 	public void selectItem(int position) {
 		getActionBar().setTitle(getResources().getStringArray(R.array.nav_drawer_titles)[position]);
 		Fragment fragment = null;
+		Intent mainIntent = new Intent(this, FullscreenSignin.class);
+		mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		switch(position){
 		case 0:
 			fragment = new FragmentHome();
@@ -126,6 +134,19 @@ public class MainActivity extends Activity implements OnItemClickListener {
 		case 3:
 			fragment = new FragmentContact();
 			break;
+		case 5:
+            Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
+            mGoogleApiClient.disconnect();
+            mGoogleApiClient.connect();
+    		startActivity(mainIntent);
+            break;
+		case 6:
+			Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
+			Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient);
+            mGoogleApiClient = buildGoogleApiClient();
+            mGoogleApiClient.connect();
+    		startActivity(mainIntent);
+    		break;
 			default:
 				mDrawerLayout.closeDrawer(mDrawerList);
 		}

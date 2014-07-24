@@ -16,25 +16,24 @@ import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
 
 public abstract class BaseActivity extends Activity implements ConnectionCallbacks,
-OnConnectionFailedListener, View.OnClickListener{
+OnConnectionFailedListener {
 	
 	private static final String TAG = "vtc.project.instanthelper.android";
 	public static final int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
-	private int mSignInProgress;
-	private static final int STATE_DEFAULT = 0;
+	protected int mSignInProgress;
+	protected static final int STATE_DEFAULT = 0;
 	private static final int STATE_SIGN_IN = 1;
 	private static final int STATE_IN_PROGRESS = 2;
 
 	private static final int RC_SIGN_IN = 0;
 
 	private static final int DIALOG_PLAY_SERVICES_ERROR = 0;
-	private static final String SAVED_PROGRESS = "sign_in_progress";
+	protected static final String SAVED_PROGRESS = "sign_in_progress";
 
-	private GoogleApiClient mGoogleApiClient;
+	protected GoogleApiClient mGoogleApiClient;
 	private PendingIntent mSignInIntent;
 	private int mSignInError;
 
@@ -43,7 +42,7 @@ OnConnectionFailedListener, View.OnClickListener{
 		super.onCreate(savedInstanceState);
 		
 	}
-	private GoogleApiClient buildGoogleApiClient() {
+	protected GoogleApiClient buildGoogleApiClient() {
 		return new GoogleApiClient.Builder(this).addConnectionCallbacks(this)
 				.addOnConnectionFailedListener(this)
 				.addApi(Plus.API, Plus.PlusOptions.builder().build())
@@ -77,6 +76,8 @@ OnConnectionFailedListener, View.OnClickListener{
 		Log.i(TAG, "onConnected:");
 
 		mSignInProgress = STATE_DEFAULT;
+		
+
 	}
 
 	@Override
@@ -102,7 +103,7 @@ OnConnectionFailedListener, View.OnClickListener{
 
 	}
 
-	private void resolveSignInError() {
+	protected void resolveSignInError() {
 		if (mSignInIntent != null) {
 			try {
 				mSignInProgress = STATE_IN_PROGRESS;
@@ -150,6 +151,7 @@ OnConnectionFailedListener, View.OnClickListener{
 
 	private void onSignedOut() {
 		Log.i(TAG, "onSignedOut() 01: ");
+
 
 	}
 

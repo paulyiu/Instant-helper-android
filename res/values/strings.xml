@@ -13,6 +13,8 @@
         <item>Media</item>
         <item>Contact</item>
         <item>Close</item>
+        <item>Logout</item>
+        <item>Revoke</item>
     </string-array>
 
     <array name="nav_drawer_icons">
@@ -21,6 +23,8 @@
         <item>@drawable/sidebar_gallery</item>
         <item>@drawable/sidebar_mail</item>
         <item>@drawable/sidebar_close</item>
+        <item>@drawable/sidebar_logout</item>
+        <item>@drawable/sidebar_revoke</item>
     </array>
 
     <string name="desc_slide1">Welcome\nYour business partner</string>
