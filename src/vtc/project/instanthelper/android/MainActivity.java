@@ -1,8 +1,5 @@
 package vtc.project.instanthelper.android;
 
-import com.google.android.gms.plus.Plus;
-
-import android.app.Activity;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.content.Context;
@@ -12,33 +9,48 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-public class MainActivity extends BaseActivity implements OnItemClickListener {
+import com.google.android.gms.plus.Plus;
+import com.google.android.gms.plus.model.people.Person;
+
+public class MainActivity extends BaseActivity implements OnItemClickListener, OnClickListener {
 
 	private DrawerLayout mDrawerLayout;
 	private ListView mDrawerList;
 	private ActionBarDrawerToggle drawerListener;
 	private MyAdapter myAdapter;
-
+	private ImageView mUserIcon;
+	private TextView mUserName;
+	
+	private Button mSignOutButton;
+	private Button mRevokeButton;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 
 		mGoogleApiClient = buildGoogleApiClient();
+		mUserIcon = (ImageView) findViewById(R.id.user_icon);
+		mUserName = (TextView) findViewById(R.id.user_displayname);
+		mRevokeButton = (Button) findViewById(R.id.revoke_access_button);
+		mSignOutButton = (Button) findViewById(R.id.sign_out_button);
+		mRevokeButton.setOnClickListener(this);
+		mSignOutButton.setOnClickListener(this);
+		
 		mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
 		drawerListener = new ActionBarDrawerToggle(this, mDrawerLayout,
 				R.drawable.ic_drawer, R.string.drawer_open,
@@ -63,6 +75,7 @@ public class MainActivity extends BaseActivity implements OnItemClickListener {
 		mDrawerList = (ListView) findViewById(R.id.left_drawer);
 		myAdapter = new MyAdapter(this);
 		mDrawerList.setAdapter(myAdapter);
+		
 		/*
 		 * mDrawerList.setAdapter(new ArrayAdapter<>(this,
 		 * android.R.layout.simple_list_item_1, mNavigationDrawerItemTitles));
@@ -71,6 +84,18 @@ public class MainActivity extends BaseActivity implements OnItemClickListener {
 		selectItem(0);
 		mDrawerList.setItemChecked(0, true);
 		mDrawerList.setSelection(0);
+	}
+	
+	@Override
+	public void onClick(View v){
+		switch (v.getId()) {
+		case R.id.sign_out_button:
+			selectItem(5);
+			break;
+		case R.id.revoke_access_button:
+			selectItem(6);
+			break;
+		}
 	}
 
 	@Override
@@ -116,6 +141,16 @@ public class MainActivity extends BaseActivity implements OnItemClickListener {
 
 	}
 
+	@Override
+	public void onConnected(Bundle connectionHint){
+		super.onConnected(connectionHint);
+		
+		Person currentUser = Plus.PeopleApi.getCurrentPerson(mGoogleApiClient);
+		new LoadProfileImage(mUserIcon).execute(currentUser.getImage().getUrl()
+				+ "&sz=350");
+		mUserName.setText(currentUser.getDisplayName());
+
+	}
 	public void selectItem(int position) {
 		getActionBar().setTitle(getResources().getStringArray(R.array.nav_drawer_titles)[position]);
 		Fragment fragment = null;

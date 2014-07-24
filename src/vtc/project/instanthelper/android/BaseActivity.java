@@ -1,11 +1,19 @@
 package vtc.project.instanthelper.android;
 
+import java.io.InputStream;
+import java.util.ArrayList;
+
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
+import com.google.android.gms.common.api.CommonStatusCodes;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.GoogleApiClient.ConnectionCallbacks;
 import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListener;
+import com.google.android.gms.plus.People;
 import com.google.android.gms.plus.Plus;
+import com.google.android.gms.plus.People.LoadPeopleResult;
+import com.google.android.gms.plus.model.people.PersonBuffer;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -14,12 +22,20 @@ import android.app.PendingIntent;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.TextView;
 
-public abstract class BaseActivity extends Activity implements ConnectionCallbacks,
-OnConnectionFailedListener {
-	
+public abstract class BaseActivity extends Activity implements
+		ConnectionCallbacks, OnConnectionFailedListener,
+		ResultCallback<People.LoadPeopleResult> {
+
 	private static final String TAG = "vtc.project.instanthelper.android";
 	public static final int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
@@ -36,19 +52,23 @@ OnConnectionFailedListener {
 	protected GoogleApiClient mGoogleApiClient;
 	private PendingIntent mSignInIntent;
 	private int mSignInError;
+	
+	private ArrayAdapter<String> mCirclesAdapter;
+	private ArrayList<String> mCirclesList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+
 	}
+
 	protected GoogleApiClient buildGoogleApiClient() {
 		return new GoogleApiClient.Builder(this).addConnectionCallbacks(this)
 				.addOnConnectionFailedListener(this)
 				.addApi(Plus.API, Plus.PlusOptions.builder().build())
 				.addScope(Plus.SCOPE_PLUS_LOGIN).build();
 	}
-	
+
 	@Override
 	protected void onStart() {
 		super.onStart();
@@ -70,15 +90,14 @@ OnConnectionFailedListener {
 
 		outState.putInt(SAVED_PROGRESS, mSignInProgress);
 	}
-	
+
 	@Override
 	public void onConnected(Bundle connectionHint) {
 		Log.i(TAG, "onConnected:");
 
 		mSignInProgress = STATE_DEFAULT;
-		
 
-	}
+			}
 
 	@Override
 	public void onConnectionFailed(ConnectionResult result) {
@@ -143,15 +162,38 @@ OnConnectionFailedListener {
 
 			if (!mGoogleApiClient.isConnected()) {
 				mGoogleApiClient.connect();
-				Log.i(TAG, "onActivityResult 02: !mGoogleApiClient.isConnected()");
+				Log.i(TAG,
+						"onActivityResult 02: !mGoogleApiClient.isConnected()");
 			}
 			break;
 		}
 	}
 
+	@Override
+	public void onResult(LoadPeopleResult peopleData) {
+		if (peopleData.getStatus().getStatusCode() == CommonStatusCodes.SUCCESS) {
+			mCirclesList.clear();
+			PersonBuffer personBuffer = peopleData.getPersonBuffer();
+			try {
+				int count = personBuffer.getCount();
+				for (int i = 0; i < count; i++) {
+					mCirclesList.add(personBuffer.get(i).getDisplayName());
+				}
+			} finally {
+				personBuffer.close();
+			}
+
+			mCirclesAdapter.notifyDataSetChanged();
+		} else {
+			Log.e(TAG,
+					"Error requesting visible circles: "
+							+ peopleData.getStatus());
+		}
+
+	}
+
 	private void onSignedOut() {
 		Log.i(TAG, "onSignedOut() 01: ");
-
 
 	}
 
@@ -194,4 +236,32 @@ OnConnectionFailedListener {
 		}
 	}
 
+}
+
+/**
+ * Background Async task to load user profile picture from url
+ * */
+class LoadProfileImage extends AsyncTask<String, Void, Bitmap> {
+	ImageView bmImage;
+
+	public LoadProfileImage(ImageView bmImage) {
+		this.bmImage = bmImage;
+	}
+
+	protected Bitmap doInBackground(String... urls) {
+		String urldisplay = urls[0];
+		Bitmap mIcon11 = null;
+		try {
+			InputStream in = new java.net.URL(urldisplay).openStream();
+			mIcon11 = BitmapFactory.decodeStream(in);
+		} catch (Exception e) {
+			Log.e("Error", e.getMessage());
+			e.printStackTrace();
+		}
+		return mIcon11;
+	}
+
+	protected void onPostExecute(Bitmap result) {
+		bmImage.setImageBitmap(result);
+	}
 }
