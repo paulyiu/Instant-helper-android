@@ -4,5 +4,79 @@
     <string name="app_name">Instant Helper</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="drawer_open">Slider Menu Opened</string>
+    <string name="drawer_close">Slider Menu Closed</string>
+
+    <string-array name="nav_drawer_titles">
+        <item>Home</item>
+        <item>Features</item>
+        <item>Media</item>
+        <item>Contact</item>
+        <item>Close</item>
+        <item>Logout</item>
+        <item>Revoke</item>
+    </string-array>
+
+    <array name="nav_drawer_icons">
+        <item>@drawable/sidebar_home</item>
+        <item>@drawable/sidebar_features</item>
+        <item>@drawable/sidebar_gallery</item>
+        <item>@drawable/sidebar_mail</item>
+        <item>@drawable/sidebar_close</item>
+        <item>@drawable/sidebar_logout</item>
+        <item>@drawable/sidebar_revoke</item>
+    </array>
+
+    <string name="desc_slide1">Welcome\nYour business partner</string>
+    <string name="desc_slide2">One-Stop Service</string>
+    <string name="desc_slide3">Go-up Company Ltd.\nEstablished since 2013</string>
+    <string name="desc_list_item_icon">Item Icon</string>
+    <string name="title_activity_home_fragment">HomeFragment</string>
+    <string name="title_activity_contact_fragment">ContactFragment</string>
+    <string name="desc_air">Air conditioning repair service\nIncludes installation, maintenance</string>
+    <string name="desc_fire">Fire service\nIncludes fire safety</string>
+    <string name="desc_water">Water pipe service\nInclude installation, maintenance</string>
+    <string name="desc_electric">Electric service\nInclude electrical systems/equipment\n(e.g. socket, light pipe etc.)</string>
+    <string name="desc_first">
+<![CDATA[<b>Services we provides!</b><br>
+	<i><font color=red>just a few words to start</font></i><br>
+	Register to member. Let getting start your business]]>
+    </string>
+    <string name="desc_second">
+<![CDATA[<b>To be launch!</b><br>
+	<i><font color=red>just a few words to start</font></i><br>
+	Simple interface on our beta web site. Mobile apps will be launched soon !]]>
+    </string>
+    <string name="desc_third"><![CDATA[COPYRIGHT 2013.<br>ALL RIGHTS RESERVED]]></string>
+    <string name="contact_desc">
+<![CDATA[
+        <b>Send us an email!</b><br>
+        Use the form to send us a message.]]>
+    </string>
+    <string name="contact_name">Name:</string>
+    <string name="contact_email">Email:</string>
+    <string name="contact_message">Message:</string>
+    <string name="contact_submit">Submit</string>
+    <string name="title_activity_fragment_air">FragmentAir</string>
+    <string name="title_activity_fragment_fire">FragmentFire</string>
+    <string name="title_activity_fragment_water">FragmentWater</string>
+    <string name="title_activity_fragment_electric">FragmentElectric</string>
+    <string name="title_activity_fragment_features">FragmentFeatures</string>
+    <string name="title_activity_fragment_media">FragmentMedia</string>
+    <string name="title_activity_fullscreen_signin">Instant Helper</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="sign_out_button_name">Sign out</string>
+    <string name="revoke_access_button_name">Revoke</string>
+    <string name="status_sign_in_required">Sign-in required</string>
+    <string name="status_sign_in_error">Error signing in: %s</string>
+    <string name="status_loading">Loading…</string>
+    <string name="status_signing_in">Signing in with Google+…</string>
+    <string name="status_signed_out">Signed out</string>
+    <string name="status_revoke_access">Revoked access</string>
+    <string name="status_revoke_access_error">Error revoking access: %s</string>
+    <string name="signed_in_as">Signed in as %s</string>
+    <string name="play_services_error">Google Play services is not available.  This application will close.</string>
+    <string name="close">Close</string>
 
 </resources>
