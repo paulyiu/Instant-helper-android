@@ -1,0 +1,120 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView1"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="left|top"
+    android:layout_margin="10dp" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/order_label_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/order_label_type" />
+
+        <Spinner
+            android:id="@+id/order_data_type"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:drawSelectorOnTop="true"
+            android:entries="@array/order_type" />
+
+        <TextView
+            android:id="@+id/order_label_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/order_label_name" />
+
+        <EditText
+            android:id="@+id/order_data_name"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/order_label_phone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/order_label_phone" />
+
+        <EditText
+            android:id="@+id/order_data_phone"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:inputType="phone" />
+
+        <TextView
+            android:id="@+id/order_label_region"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/order_label_region" />
+
+        <Spinner
+            android:id="@+id/order_data_region"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:entries="@array/order_region" />
+
+        <TextView
+            android:id="@+id/order_label_address"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/order_label_address" />
+
+        <EditText
+            android:id="@+id/order_data_address"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/order_label_comment"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/order_label_comment" />
+
+        <EditText
+            android:id="@+id/order_data_comment"
+            android:layout_width="fill_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="top|left"
+            android:gravity="center_vertical|top" />
+
+        <TextView
+            android:id="@+id/order_label_upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="@string/order_label_upload" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/order_btn_upload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/order_label_upload2" />
+        <ImageView
+            android:id="@+id/order_img_upload"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            /> </LinearLayout>
+        <Button
+            android:id="@+id/order_submit"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/order_submit" />
+   
+</LinearLayout>
+</ScrollView>

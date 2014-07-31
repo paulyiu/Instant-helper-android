@@ -149,8 +149,10 @@ public class FullscreenSignin extends BaseActivity implements View.OnClickListen
 		super.onConnected(connectionHint);
 		
 		Intent mainIntent = new Intent(this, MainActivity.class);
-		mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+		mainIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+		//mainIntent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 		startActivity(mainIntent);
+		//finish();
 	}
 	@Override
 	public void onClick(View v) {

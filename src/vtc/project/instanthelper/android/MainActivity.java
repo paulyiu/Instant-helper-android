@@ -90,10 +90,10 @@ public class MainActivity extends BaseActivity implements OnItemClickListener, O
 	public void onClick(View v){
 		switch (v.getId()) {
 		case R.id.sign_out_button:
-			selectItem(5);
+			selectItem(6);
 			break;
 		case R.id.revoke_access_button:
-			selectItem(6);
+			selectItem(7);
 			break;
 		}
 	}
@@ -161,21 +161,24 @@ public class MainActivity extends BaseActivity implements OnItemClickListener, O
 			fragment = new FragmentHome();
 			break;
 		case 1:
-			fragment = new FragmentFeatures();
+			fragment = new FragmentOrder();
 			break;
 		case 2:
-			fragment = new FragmentMedia();
+			fragment = new FragmentMessage();
 			break;
 		case 3:
 			fragment = new FragmentContact();
 			break;
-		case 5:
+		case 4:
+			fragment = new FragmentProfile();
+			break;
+		case 6:
             Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
             mGoogleApiClient.disconnect();
             mGoogleApiClient.connect();
     		startActivity(mainIntent);
             break;
-		case 6:
+		case 7:
 			Plus.AccountApi.clearDefaultAccount(mGoogleApiClient);
 			Plus.AccountApi.revokeAccessAndDisconnect(mGoogleApiClient);
             mGoogleApiClient = buildGoogleApiClient();
@@ -197,14 +200,14 @@ public class MainActivity extends BaseActivity implements OnItemClickListener, O
 }
 
 class MyAdapter extends BaseAdapter {
-	String[] socialSites;
+	String[] titles;
 	TypedArray images;
 	private Context context;
 
 	public MyAdapter(Context context) {
 		this.context = context;
 
-		socialSites = context.getResources().getStringArray(
+		titles = context.getResources().getStringArray(
 				R.array.nav_drawer_titles);
 		images = context.getResources().obtainTypedArray(
 				R.array.nav_drawer_icons);
@@ -212,12 +215,12 @@ class MyAdapter extends BaseAdapter {
 
 	@Override
 	public int getCount() {
-		return socialSites.length;
+		return titles.length;
 	}
 
 	@Override
 	public Object getItem(int position) {
-		return socialSites[position];
+		return titles[position];
 	}
 
 	@Override
@@ -236,7 +239,7 @@ class MyAdapter extends BaseAdapter {
 		}
 		TextView titleTextView = (TextView) row.findViewById(R.id.textView1);
 		ImageView titleImageView = (ImageView) row.findViewById(R.id.imageView1);
-		titleTextView.setText(socialSites[position]);
+		titleTextView.setText(titles[position]);
 		titleImageView.setImageResource(images.getResourceId(position, -1));
 		
 		return row;

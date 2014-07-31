@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content" android:orientation="vertical"
+    android:layout_width="fill_parent">
+
+    <TableRow
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp" >
+
+    <TextView
+        android:id="@+id/message_row_company"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:height="20sp"
+        android:text="categoryId"
+        android:textColor="#36bce6" />
+
+    <TextView
+        android:id="@+id/message_row_price"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="right"
+        android:height="20sp"
+        android:text="description"
+        android:textColor="#fd935a" />
+
+</TableRow>
+
+</TableLayout>

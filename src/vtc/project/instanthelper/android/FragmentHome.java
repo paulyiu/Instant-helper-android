@@ -48,7 +48,7 @@ public class FragmentHome extends Fragment implements OnClickListener {
 			}
 		});
 		mViewFlipper.setAutoStart(true);
-		mViewFlipper.setFlipInterval(4000);
+		mViewFlipper.setFlipInterval(3000);
 		mViewFlipper.startFlipping();
 
 		rootView.findViewById(R.id.button_air).setOnClickListener(this);
@@ -72,19 +72,25 @@ public class FragmentHome extends Fragment implements OnClickListener {
 			try {
 				if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE
 						&& Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+					mViewFlipper.stopFlipping();
 					mViewFlipper.setInAnimation(AnimationUtils.loadAnimation(
 							mContext, R.anim.slide_in_left));
 					mViewFlipper.setOutAnimation(AnimationUtils.loadAnimation(
 							mContext, R.anim.slide_out_left));
 					mViewFlipper.showNext();
+					mViewFlipper.setFlipInterval(3000);
+					mViewFlipper.startFlipping();
 					return true;
 				} else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE
 						&& Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+					mViewFlipper.stopFlipping();
 					mViewFlipper.setInAnimation(AnimationUtils.loadAnimation(
 							mContext, R.anim.slide_in_right));
 					mViewFlipper.setOutAnimation(AnimationUtils.loadAnimation(
 							mContext, R.anim.slide_out_right));
 					mViewFlipper.showNext();
+					mViewFlipper.setFlipInterval(3000);
+					mViewFlipper.startFlipping();
 					return true;
 				}
 			} catch (Exception e) {
@@ -101,16 +107,16 @@ public class FragmentHome extends Fragment implements OnClickListener {
 		Fragment fragment = null;
 		switch(v.getId()){
 		case R.id.button_air:
-			fragment = new FragmentAir();
+			fragment = new FragmentOrder();
 			break;
 		case R.id.button_fire:
-			fragment = new FragmentFire();
+			fragment = new FragmentOrder();
 			break;
 		case R.id.button_water:
-			fragment = new FragmentWater();
+			fragment = new FragmentOrder();
 			break;
 		case R.id.button_electric:
-			fragment = new FragmentElectric();
+			fragment = new FragmentOrder();
 			break;
 		}
 		

@@ -9,9 +9,10 @@
 
     <string-array name="nav_drawer_titles">
         <item>Home</item>
-        <item>Features</item>
-        <item>Media</item>
+        <item>Order</item>
+        <item>Message</item>
         <item>Contact</item>
+        <item>Profile</item>
         <item>Close</item>
         <item>Logout</item>
         <item>Revoke</item>
@@ -19,9 +20,10 @@
 
     <array name="nav_drawer_icons">
         <item>@drawable/sidebar_home</item>
-        <item>@drawable/sidebar_features</item>
-        <item>@drawable/sidebar_gallery</item>
+        <item>@drawable/sidebar_order</item>
         <item>@drawable/sidebar_mail</item>
+        <item>@drawable/sidebar_contact</item>
+        <item>@drawable/sidebar_features</item>
         <item>@drawable/sidebar_close</item>
         <item>@drawable/sidebar_logout</item>
         <item>@drawable/sidebar_revoke</item>
@@ -53,17 +55,100 @@
         <b>Send us an email!</b><br>
         Use the form to send us a message.]]>
     </string>
+    <string name="contact_title_backgroud">Company Backgroud</string>
+    <string name="contact_company_backgroud">        GoUp co Ltd is an IT Solution Company incorporated in 2014 in Hong Kong. It provides IT solution for our potential client to solve their technical issue. We are responsible to develop mobile apps web application, database management. In Hong Kong, GoUp co Ltd employs approximately 3 programmers and 1 clerical staff. We should propose new Instant helper apps, it can let client which is available to create maintenance order just following step by step to fill in the form and waiting for the render to get the quotation which is suitable for them.</string>
+    <string name="contact_title_contact">Contact Us</string>
     <string name="contact_name">Name:</string>
     <string name="contact_email">Email:</string>
     <string name="contact_message">Message:</string>
     <string name="contact_submit">Submit</string>
-    <string name="title_activity_fragment_air">FragmentAir</string>
-    <string name="title_activity_fragment_fire">FragmentFire</string>
-    <string name="title_activity_fragment_water">FragmentWater</string>
-    <string name="title_activity_fragment_electric">FragmentElectric</string>
-    <string name="title_activity_fragment_features">FragmentFeatures</string>
-    <string name="title_activity_fragment_media">FragmentMedia</string>
-    <string name="title_activity_fullscreen_signin">Instant Helper</string>
+    <string name="order_label_type">Order Type</string>
+
+    <string-array name="order_type">
+        <item>Wind</item>
+        <item>Fire</item>
+        <item>Water</item>
+        <item>Electric</item>
+    </string-array>
+
+    <string name="order_label_name">Name</string>
+    <string name="order_label_phone">Contact Number</string>
+    <string name="order_label_region">Region</string>
+
+    <string-array name="order_region">
+        <item>Hong Kong</item>
+        <item>Kowloon</item>
+        <item>New Territories</item>
+    </string-array>
+
+    <string name="order_label_address">Residential Address</string>
+    <string name="order_label_comment">Comments</string>
+    <string name="order_label_upload">Upload Photo</string>
+    <string name="order_label_upload2">Select Photo</string>
+    <string name="order_submit">Submit</string>
+    <string name="profile_label_name">Company Name</string>
+    <string name="profile_label_person">Contact Person</string>
+    <string name="profile_label_phone">Contact Phone</string>
+    <string name="profile_label_address">Residential Address</string>
+    <string name="profile_submit">Edit</string>
+
+
+    <string-array name="message_company">
+        <item>鐵人水電冷氣工程公司</item>
+        <item>誠志冷氣工程</item>
+        <item>堅成工程公司</item>
+        <item>誠志冷氣工程</item>
+                <item>富榮水電工程</item>
+        <item>得利信工程服務有限公司</item>
+        <item>打雜王維修服務有限公司</item>
+        <item>恒毅工程(香港)有限公司</item>
+        <item>穩擅基建賢記</item>
+        <item>堅成工程公司</item>
+        <item>安美森工程服務</item>
+    </string-array>
+    <string-array name="message_price">
+        <item>430</item>
+        <item>430</item>
+        <item>430</item>
+        <item>350</item>
+                <item>370</item>
+        <item>430</item>
+        <item>390</item>
+        <item>430</item>
+                <item>350</item>
+        <item>420</item>
+        <item>380</item>
+    </string-array>
+    <string-array name="message_person">
+        <item>Otto</item>
+        <item>Veronica</item>
+        <item>Kenneth</item>
+        <item>Tom</item>
+                <item>Peter</item>
+        <item>Tony</item>
+        <item>Mr Wong</item>
+        <item>Mr Chan</item>
+                <item>Tom</item>
+        <item>Mr Tang</item>
+        <item>Jacky</item>
+        
+    </string-array>
+        <string-array name="message_phone">
+        <item>5403 0713</item>
+        <item>9588 1426</item>
+        <item>9588 1426</item>
+        <item>2790 4334</item>
+                <item>9038 4633</item>
+        <item>2866 1493</item>
+        <item>2878 7811</item>
+        <item>2743 8488</item>
+                <item>9787 5895</item>
+        <item>2796 1552</item>
+        <item>3689 2318</item>
+        
+    </string-array>
+    <string name="message_choose">Choose</string>
+
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="sign_out_button_name">Sign out</string>
@@ -78,5 +163,19 @@
     <string name="signed_in_as">Signed in as %s</string>
     <string name="play_services_error">Google Play services is not available.  This application will close.</string>
     <string name="close">Close</string>
+    <string name="title_activity_fragment_order">FragmentOrder</string>
+    <string name="title_activity_fragment_message">FragmentMessage</string>
+    <string name="title_activity_fragment_profile">FragmentProfile</string>
+    <string name="title_activity_fragment_air">FragmentAir</string>
+    <string name="title_activity_fragment_fire">FragmentFire</string>
+    <string name="title_activity_fragment_water">FragmentWater</string>
+    <string name="title_activity_fragment_electric">FragmentElectric</string>
+    <string name="title_activity_fragment_features">FragmentFeatures</string>
+    <string name="title_activity_fragment_media">FragmentMedia</string>
+    <string name="title_activity_fullscreen_signin">Instant Helper</string>
+    <string name="title_activity_swipe_message">SwipeMessage</string>
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
 
 </resources>
