@@ -111,6 +111,7 @@ public class FragmentOrder extends Fragment implements OnClickListener {
 				try {
 					Bitmap bm;
 					BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+					bitmapOptions.inSampleSize = 10;
 					bm = BitmapFactory.decodeFile(f.getAbsolutePath(),
 							bitmapOptions);
 					order_img_upload.setImageBitmap(bm);
@@ -142,6 +143,7 @@ public class FragmentOrder extends Fragment implements OnClickListener {
 				String tempPath = getPath(selectedImageUri,getActivity());
 				Bitmap bm;
 				BitmapFactory.Options bitmapOptions = new BitmapFactory.Options();
+				bitmapOptions.inSampleSize = 10;
 				bm = BitmapFactory.decodeFile(tempPath, bitmapOptions);
 				order_img_upload.setImageBitmap(bm);
 
