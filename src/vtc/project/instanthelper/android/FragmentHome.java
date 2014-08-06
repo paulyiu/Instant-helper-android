@@ -14,7 +14,6 @@ import android.view.View.OnClickListener;
 import android.view.View.OnTouchListener;
 import android.view.ViewGroup;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
@@ -94,7 +93,6 @@ public class FragmentHome extends Fragment implements OnClickListener {
 					return true;
 				}
 			} catch (Exception e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			return false;
@@ -103,7 +101,6 @@ public class FragmentHome extends Fragment implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
-		// TODO Auto-generated method stub
 		Fragment fragment = null;
 		switch(v.getId()){
 		case R.id.button_air:

@@ -18,6 +18,13 @@
 <uses-permission
      android:name="android.permission.WRITE_EXTERNAL_STORAGE"
 />
+ <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    
+    <permission android:name="vtc.project.instanthelper.android.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+    <uses-permission android:name="vtc.project.instanthelper.android.permission.C2D_MESSAGE" />
+    
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -87,6 +94,16 @@
             android:name=".FragmentProfile"
             android:label="@string/title_activity_fragment_profile" >
         </activity>
+        
+         <receiver
+            android:name="vtc.project.instanthelper.android.notification.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="vtc.project.instanthelper.android" />
+            </intent-filter>
+        </receiver>
+        <service android:name=".notification.GcmIntentService" />
     </application>
 
 </manifest>

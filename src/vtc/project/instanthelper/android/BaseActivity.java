@@ -29,14 +29,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 
 public abstract class BaseActivity extends Activity implements
 		ConnectionCallbacks, OnConnectionFailedListener,
 		ResultCallback<People.LoadPeopleResult> {
 
-	private static final String TAG = "vtc.project.instanthelper.android";
+	protected static final String TAG = "vtc.project.instanthelper.android";
 	public static final int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
 	protected int mSignInProgress;
