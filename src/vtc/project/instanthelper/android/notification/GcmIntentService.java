@@ -1,7 +1,11 @@
 package vtc.project.instanthelper.android.notification;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
+
 import vtc.project.instanthelper.android.R;
 import vtc.project.instanthelper.android.MainActivity;
+
 import com.google.android.gms.gcm.GoogleCloudMessaging;
 
 import android.app.IntentService;
@@ -58,7 +62,14 @@ public class GcmIntentService extends IntentService {
 				 * SystemClock.elapsedRealtime());
 				 */
 				// Post notification of received message.
-				sendNotification("Received: " + extras.getString("message"));
+	
+					try {
+						sendNotification("Received: " + URLDecoder.decode(extras.getString("message"),"UTF-8"));
+					} catch (UnsupportedEncodingException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+	
 				Log.i(TAG, "Received: " + extras.toString());
 			}
 		}
